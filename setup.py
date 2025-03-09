@@ -10,7 +10,6 @@ setup(
                 ],
             },
         install_requires=[
-            'click',
             'ascii_magic',
             'rich',
             ],
