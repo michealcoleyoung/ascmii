@@ -16,9 +16,9 @@ d88P     888  "Y8888P"   "Y8888P"  888       888 8888888 8888888
     """
     print(ascmii_doc.__doc__)
 
-def convert_to_ascii(img):
+def convert_to_ascii(img, columns=100, width_ratio=4, monochrome=False, char=None, front=None, back=None):
     art = AsciiArt.from_image(img)
-    output = art.to_ascii(columns=200, back=Back.WHITE)
+    output = art.to_ascii()
     print(output)
 
 def main():
@@ -27,4 +27,4 @@ def main():
     convert_to_ascii(image)
 
 if __name__ == '__main__':
-    main() 
+    main()
