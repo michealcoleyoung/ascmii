@@ -1,4 +1,4 @@
-from ascii_magic import AsciiArt, from_image, Back
+from ascii_magic import AsciiArt, from_image, Back, Front
 import argparse
 import sys
 
@@ -18,51 +18,69 @@ d88P     888  "Y8888P"   "Y8888P"  888       888 8888888 8888888
     """
     print(ascmii_doc.__doc__)
 
-def convert_to_ascii(img, columns=100, width_ratio=4, 
-                     monochrome=False, char=None, 
-                     front=None, back=None, output_file=None, grayscale=False, saturation=None):
-    art = AsciiArt.from_image(img)
-    
-    # apply greyscale
-    if grayscale:
-        art.grayscale()
-
-    # apply saturation
-    if saturation is not None:
-        art.supply_saturation(saturation)
-
-    output = art.to_ascii(columns=columns, width_ratio=width_ratio, 
-                          monochrome=monochrome, char=char, front=front, back=back)
-
-
-    if output_file:
-        try:
-            with open(output_file, 'w') as f:
-                f.write(output)
-            print(f"ASCII art saved to file {output_file}")
-        except Exception as e:
-            print(f"Error writing to file: {e}")
-    else:
+def convert_to_ascii(img_path, **kwargs):
+    try:
+        art = AsciiArt.from_image(img)
+        output = art.to_ascii(**kwargs)
         print(output)
+    except FileNotFoundError:
+        print(f"Error: Image file was not found at {img_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    
 
 def main():
     parser = argparse.ArgumentParser(description="Convert images to ASCII art.")
-    parser.add_argument("image", help="Path to input image.")
-    parser.add_argument("--width", type=int, help="Width of th eoutput ASCII art.", default=100)
-    parser.add_argument("--color", action="store_true", help="Enable color ouput.")
-    parser.add_argument("--output", help="Path to save the ascii art to a file")
-    parser.add_argument("--char-set", help="Character set to use for ASCII art (e.g, block).")
-    parser.add_argument("--grayscale", action="store_true", help="Convert the image to grascale before generating ASCII art.")
+    parser.add_argument("image", help="Path to the input image file.")
+    parser.add_argument("--width", type=int, default=120, help="Width of the output ASCII art (default: 120).")
+    parser.add_argument("--color", action="store_true", help="Enable color output.")
+    parser.add_argument("--output", help="Path to save the ASCII art to a file.")
+    parser.add_argument("--char-set", default=None, help="Specify a character to use for the ASCII art.")
+    parser.add_argument("--monochrome", action="store_true", help="Enable grayscale (monochrome) output.")
+    parser.add_argument("--back", type=str, default=None, help="Background Color.")
+    parser.add_argument("--front", type=str, default=None, help="Foreground Color.")
 
     args = parser.parse_args()
 
-    convert_to_ascii(
-            args.image,
-            columns=args.width,
-            monochrome=not args.color,
-            char=args.char_set,
-            output_file=args.output,
-            grayscale=args.grayscale)
+    kwargs = {
+            'columns': args.width,
+            'monochrome': args.monochrome,
+            }
+    
+    if args.char_set:
+        kwargs['char'] = args.char_set
+
+
+    if args.color and args.monochrome:
+        print("Error: Cannot use both --color and --monochrome options together.")
+        sys.exit(1)
+
+    if args.front:
+        try:
+            kwargs['front'] = Front[args.front.upper()]
+        except KeyError:
+            print("Error: Invalid Front Color.")
+            sys.exit(1)
+    
+    if args.back:
+        try:
+            kwargs['back'] = Back[args.back.uppder()]
+        except KeyError:
+            print("Error: Invalid Back Color.")
+            sys.exit(1)
+
+
+    ascii_art = AsciiArt.from_image(args.image).to_ascii(**kwargs)
+
+    if args.output:
+        try:
+            with open(args.output, 'w') as f:
+                f.write(ascii_art)
+            print(f"ASCII art saved to {args.output}")
+        except Exception as e:
+            print(f"Error saving to file: {e}")
+    else:
+        print(ascii_art)
 
 if __name__ == '__main__':
     main()
