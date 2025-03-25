@@ -33,7 +33,7 @@ def convert_to_ascii(img_path, **kwargs):
     
 
 def main():
-    parser = argparse.ArgumentParser(description=ascmii_doc())
+    parser = argparse.ArgumentParser(usage="ascmii image.png --color", description=ascmii_doc())
     parser.add_argument("image", help="Path to the input image file.")
     parser.add_argument("--width", type=int, default=120, help="Width of the output ASCII art (default: 120).")
     parser.add_argument("--color", action="store_true", help="Enable color output.")
