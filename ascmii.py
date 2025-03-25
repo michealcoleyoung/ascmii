@@ -15,7 +15,10 @@ def ascmii_doc():
   d88P   888       "888 888    888 888  Y8P  888   888     888   
  d8888888888 Y88b  d88P Y88b  d88P 888   "   888   888     888   
 d88P     888  "Y8888P"   "Y8888P"  888       888 8888888 8888888 
+
+Convert Images to ASCII art.
     """
+
     print(ascmii_doc.__doc__)
 
 def convert_to_ascii(img_path, **kwargs):
@@ -30,7 +33,7 @@ def convert_to_ascii(img_path, **kwargs):
     
 
 def main():
-    parser = argparse.ArgumentParser(description="Convert images to ASCII art.")
+    parser = argparse.ArgumentParser(description=ascmii_doc())
     parser.add_argument("image", help="Path to the input image file.")
     parser.add_argument("--width", type=int, default=120, help="Width of the output ASCII art (default: 120).")
     parser.add_argument("--color", action="store_true", help="Enable color output.")
@@ -46,7 +49,8 @@ def main():
             'columns': args.width,
             'monochrome': args.monochrome,
             }
-    
+
+   
     if args.char_set:
         kwargs['char'] = args.char_set
 
@@ -64,7 +68,7 @@ def main():
     
     if args.back:
         try:
-            kwargs['back'] = Back[args.back.uppder()]
+            kwargs['back'] = Back[args.back.upper()]
         except KeyError:
             print("Error: Invalid Back Color.")
             sys.exit(1)
