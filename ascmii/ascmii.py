@@ -30,7 +30,6 @@ def convert_to_ascii(img_path, **kwargs):
         print(f"Error: Image file was not found at {img_path}")
     except Exception as e:
         print(f"An error occurred: {e}")
-    
 
 def main():
     parser = argparse.ArgumentParser(usage="ascmii image.png --color", description=ascmii_doc())
