@@ -23,7 +23,7 @@ Convert Images to ASCII art.
 
 def convert_to_ascii(img_path, **kwargs):
     try:
-        art = AsciiArt.from_image(img)
+        art = AsciiArt.from_image(img_path)
         output = art.to_ascii(**kwargs)
         print(output)
     except FileNotFoundError:
