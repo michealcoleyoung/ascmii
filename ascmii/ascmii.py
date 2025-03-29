@@ -4,6 +4,8 @@ import sys
 
 # my_art = AsciiArt.from_image('cross-surreal.jpg')
 # my_art.to_terminal()
+# my_art = AsciiArt.from_image('cross-surreal.jpg')
+# print(my_art.to_html_file('ascii_art.html', columns=200, width_ratio=2))
 
 def ascmii_doc():
     """
@@ -15,8 +17,9 @@ def ascmii_doc():
   d88P   888       "888 888    888 888  Y8P  888   888     888   
  d8888888888 Y88b  d88P Y88b  d88P 888   "   888   888     888   
 d88P     888  "Y8888P"   "Y8888P"  888       888 8888888 8888888 
-
-Convert Images to ASCII art.
+╭───────────────────────────────────────────────────────────────╮
+│                  Convert images to ASCII art                  │
+╰───────────────────────────────────────────────────────────────╯
     """
 
     print(ascmii_doc.__doc__)
@@ -31,6 +34,10 @@ def convert_to_ascii(img_path, **kwargs):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
+def convert_to_html(img_path, **kwargs):
+    pass
+
 def main():
     parser = argparse.ArgumentParser(usage="ascmii image.png --color", description=ascmii_doc())
     parser.add_argument("image", help="Path to the input image file.")
@@ -41,6 +48,8 @@ def main():
     parser.add_argument("--monochrome", action="store_true", help="Enable grayscale (monochrome) output.")
     parser.add_argument("--back", type=str, default=None, help="Background Color.")
     parser.add_argument("--front", type=str, default=None, help="Foreground Color.")
+    # add_argument for --html
+
 
     args = parser.parse_args()
 
