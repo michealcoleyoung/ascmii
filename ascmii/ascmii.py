@@ -58,8 +58,8 @@ AsciiArt.to_ascii(
 def main():
     parser = argparse.ArgumentParser(usage='ascmii image.png --color', description=ascmii_doc())
     parser.add_argument('image', help='Path to the input image file')
-    parser.add_argument('--columns', type=int, default=0, help='The number of characters per row, more columns = wider art')
-    parser.add_argument('--width', type=float, default=0, help='Width of the output ASCII art (default: 2.2)')
+    parser.add_argument('--columns', type=int, default=120, help='The number of characters per row, more columns = wider art')
+    parser.add_argument('--width', type=float, default=2.2, help='Width of the output ASCII art (default: 2.2)')
     parser.add_argument('--monochrome', action='store_true', help='Sets ASCII art to gray')
     parser.add_argument('--char', type=str, help='Specify a character to use for the ASCII art')
     # front
@@ -70,10 +70,12 @@ def main():
 
     if args.columns:
         kwargs['columns'] = args.columns
-    if args.char:
-        kwargs['width'] = args.width
+    if args.width:
+        kwargs['width_ratio'] = args.width
     if args.monochrome:
         kwargs['monochrome'] = args.monochrome
+    if args.char:
+        kwargs['char'] = args.char
             
     convert_to_ascii(args.image, **kwargs)
 
