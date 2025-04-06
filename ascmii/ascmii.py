@@ -1,6 +1,8 @@
-from ascii_magic import AsciiArt, from_image, Back, Front
+from ascii_magic import AsciiArt, from_image
+from colorama import just_fix_windows_console, Fore, Back
 import argparse
 import sys
+
 
 # my_art = AsciiArt.from_image('cross-surreal.jpg')
 # my_art.to_terminal()
@@ -62,8 +64,8 @@ def main():
     parser.add_argument('--width', type=float, default=2.2, help='Width of the output ASCII art (default: 2.2)')
     parser.add_argument('--monochrome', action='store_true', help='Sets ASCII art to gray')
     parser.add_argument('--char', type=str, help='Specify a character to use for the ASCII art')
-    # front
-    # back
+    parser.add_argument('--front', help='Overrides the foreground color')
+    parser.add_argument('--back', help='Overrides the background color')
     args = parser.parse_args()
 
     kwargs = {}
@@ -76,10 +78,13 @@ def main():
         kwargs['monochrome'] = args.monochrome
     if args.char:
         kwargs['char'] = args.char
-            
+    if args.front:
+        kwargs['front'] = getattr(Fore, args.front)
+    if args.back:
+        kwargs['back'] = getattr(Back, args.back)
+                         
     convert_to_ascii(args.image, **kwargs)
-
-    
-    
+        
 if __name__ == '__main__':
+    just_fix_windows_console()
     main()
