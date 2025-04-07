@@ -82,8 +82,6 @@ It's highly recommended to create a virtual environment to isolate the project d
 * `python ascmii.py image.png --char "#"` - Converts the image to ASCII art using the '#' character.
 * `python ascmii.py image.png --front=RED` - Converts the image to ASCII art with a red foreground color.
 * `python ascmii.py image.png --back=GREEN` - Converts the image to ASCII art with a green background color.
-* `python ascmii.py image.png --columns 100 --front BLUE` - Converts the image to ASCII art with 100 characters per row and a blue foreground.
-* `python ascmii.py image.png --width 2.5 --back YELLOW` - Converts the image to ASCII art, adjusting the width to 2.5 and setting a yellow background.
 
 ## License
 
