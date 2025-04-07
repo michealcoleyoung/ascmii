@@ -1,13 +1,7 @@
 from ascii_magic import AsciiArt, from_image
-from colorama import just_fix_windows_console, Fore, Back
+from colorama import Fore, Back
 import argparse
 import sys
-
-
-# my_art = AsciiArt.from_image('cross-surreal.jpg')
-# my_art.to_terminal()
-# my_art = AsciiArt.from_image('cross-surreal.jpg')
-# print(my_art.to_html_file('ascii_art.html', columns=200, width_ratio=2))
 
 def ascmii_doc():
     """
@@ -43,20 +37,6 @@ def convert_to_html(img_path, **kwargs):
 def convert_to_file(img_path, **kwargs):
     pass
 
-
-"""
-REFERENCE FOR THE TO_ASCII OBJECT
-AsciiArt.to_ascii(
-    columns: int = 120,
-    width_ratio: float = 2.2,
-    monochrome: bool = False,
-    char: Optional[str],
-    front: Optional[Front],
-    back: Optional[Back]
-) -> str
-"""
-
-
 def main():
     parser = argparse.ArgumentParser(usage='ascmii image.png --color', description=ascmii_doc())
     parser.add_argument('image', help='Path to the input image file')
@@ -86,5 +66,4 @@ def main():
     convert_to_ascii(args.image, **kwargs)
         
 if __name__ == '__main__':
-    just_fix_windows_console()
     main()
