@@ -2,7 +2,7 @@
 
 ASCMII is a Python command-line tool that converts images into ASCII art. It provides a simple and efficient way to transform images into text-based representations, suitable for various applications like terminal displays, text-based games, or artistic projects.
 
-This project is based on the ascmii_magic package, which can be found here: [https://github.com/LeandroBarone/python-ascii_magic](https://github.com/LeandroBarone/python-ascii_magic).**
+This project is based on the ascmii_magic package, which can be found here: [https://github.com/LeandroBarone/python-ascii_magic](https://github.com/LeandroBarone/python-ascii_magic)
 
 ## Features
 
