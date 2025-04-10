@@ -3,6 +3,9 @@ from colorama import Fore, Back
 import argparse
 import sys
 
+# docstring function
+# NOTE: This will need to be updated to include more documentation including
+# color options etc. 
 def ascmii_doc():
     """
        d8888  .d8888b.   .d8888b.  888b     d888 8888888 8888888 
@@ -20,11 +23,13 @@ d88P     888  "Y8888P"   "Y8888P"  888       888 8888888 8888888
 
     print(ascmii_doc.__doc__)
 
+# basci conversion
 def convert_to_ascii(img_path, **kwargs):
     art = AsciiArt.from_image(img_path)
     output = art.to_ascii(**kwargs)
     print(output)
- 
+
+# html conversion
 def convert_to_html(img_path, **kwargs):
     art = AsciiArt.from_image(img_path)
     output = art.to_html_file('art_html_test.html', columns=200, width_ratio=2)
@@ -33,7 +38,7 @@ def convert_to_html(img_path, **kwargs):
     if output:
         print("HTML file was successfully created")
 
-   
+# handles conversion and file saving   
 def convert_to_file(img_path, **kwargs):
     pass
 
