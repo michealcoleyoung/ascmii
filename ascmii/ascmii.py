@@ -23,7 +23,7 @@ d88P     888  "Y8888P"   "Y8888P"  888       888 8888888 8888888
 
     print(ascmii_doc.__doc__)
 
-# basci conversion
+# basic conversion
 def convert_to_ascii(img_path, **kwargs):
     art = AsciiArt.from_image(img_path)
     output = art.to_ascii(**kwargs)
