@@ -1,4 +1,4 @@
-![ASCMII](images/ascmii-docstring.png)
+![ASCMII](images/ascmii_logo.png)
 
 ASCMII is a Python command-line tool that converts images into ASCII art. It provides a simple and efficient way to transform images into text-based representations, suitable for various applications like terminal displays, text-based games, or artistic projects.
 
